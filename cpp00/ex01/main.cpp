@@ -44,15 +44,30 @@ void	add(PhoneBook &phoneBook)
 
 	std::string input;
 	if (!promptAndSet("First name: ", contact, &Contact::setFirstName))
+	{
+		std::cout << "No input. please try again" << std::endl;
 		return ;
+	} 
 	if (!promptAndSet("Last name: ", contact, &Contact::setLastName))
+	{
+		std::cout << "No input. please try again" << std::endl;
 		return ;
+	} 
 	if (!promptAndSet("Nick name: ", contact, &Contact::setNickName))
+	{
+		std::cout << "No input. please try again" << std::endl;
 		return ;
+	} 
 	if (!promptAndSet("Phone number: ", contact, &Contact::setPhoneNumber))
+	{
+		std::cout << "No input. please try again" << std::endl;
 		return ;
+	} 
 	if (!promptAndSet("Darkest secret: ", contact, &Contact::setDarkestSecret))
+	{
+		std::cout << "No input. please try again" << std::endl;
 		return ;
+	} 
 	phoneBook.addContact(contact);
 	std::cout << "Contact added.\n";
 	return ;

@@ -44,32 +44,17 @@ void	add(PhoneBook &phoneBook)
 
 	std::string input;
 	if (!promptAndSet("First name: ", contact, &Contact::setFirstName))
-	{
-		std::cout << "No input. please try again" << std::endl;
 		return ;
-	} 
 	if (!promptAndSet("Last name: ", contact, &Contact::setLastName))
-	{
-		std::cout << "No input. please try again" << std::endl;
 		return ;
-	} 
 	if (!promptAndSet("Nick name: ", contact, &Contact::setNickName))
-	{
-		std::cout << "No input. please try again" << std::endl;
 		return ;
-	} 
 	if (!promptAndSet("Phone number: ", contact, &Contact::setPhoneNumber))
-	{
-		std::cout << "No input. please try again" << std::endl;
 		return ;
-	} 
 	if (!promptAndSet("Darkest secret: ", contact, &Contact::setDarkestSecret))
-	{
-		std::cout << "No input. please try again" << std::endl;
 		return ;
-	} 
 	phoneBook.addContact(contact);
-	std::cout << "Contact added.\n";
+	std::cout << "Contact added." << std::endl;
 	return ;
 }
 
@@ -90,7 +75,7 @@ void	search(const PhoneBook &phonebook)
 	count = phonebook.getContactCount();
 	if (count == 0)
 	{
-		std::cout << "No Contacts available\n";
+		std::cout << "No Contacts available" << std::endl;
 		return ;
 	}
 	// 2.一覧表示
@@ -100,7 +85,7 @@ void	search(const PhoneBook &phonebook)
 		std::cout << std::setw(10) << (i + 1) << "|";
 		std::cout << std::setw(10) << formatColumn(c.getFirstName()) << "|";
 		std::cout << std::setw(10) << formatColumn(c.getLastName()) << "|";
-		std::cout << std::setw(10) << formatColumn(c.getNickName()) << "\n";
+		std::cout << std::setw(10) << formatColumn(c.getNickName()) << std::endl;
 	}
 	// 3.index入力受付
 	std::cout << "select index: ";
@@ -113,10 +98,10 @@ void	search(const PhoneBook &phonebook)
 	if (index < 1 || index > count)
 		return ;
 	const Contact &c = phonebook.getContact(index - 1);
-	std::cout << "FirstName: " << c.getFirstName() << "\n";
-	std::cout << "LastName: " << c.getLastName() << "\n";
-	std::cout << "NickName: " << c.getNickName() << "\n";
-	std::cout << "PhoneNumber: " << c.getPhoneNumber() << "\n";
-	std::cout << "DarkestSecret: " << c.getDarkestSecret() << "\n";
+	std::cout << "FirstName: " << c.getFirstName() << std::endl;
+	std::cout << "LastName: " << c.getLastName() << std::endl;
+	std::cout << "NickName: " << c.getNickName() << std::endl;
+	std::cout << "PhoneNumber: " << c.getPhoneNumber() << std::endl;
+	std::cout << "DarkestSecret: " << c.getDarkestSecret() << std::endl;
 	return ;
 }

@@ -22,8 +22,5 @@ const Contact &PhoneBook::getContact(int index) const
 
 bool PhoneBook::isValidIndex(int index) const
 {
-	if (0 <= index && index < contactCount)
-		return (true);
-	else
-		return (false);
+	return (0 <= index && index < contactCount);
 }

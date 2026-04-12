@@ -25,8 +25,8 @@ int	main(void)
 
 	std::cout << "\n=== Test 3: HumanB with no weapon ===" << std::endl;
 	{
-		HumanB noarm("NoArm");
-		noarm.attack(); // 武器なしの状態
+		HumanB noWeapon("NoWeapon");
+		noWeapon.attack(); // 武器なしの状態
 	}
 
 	std::cout << "\n=== Test 4: shared weapon between two HumanB ===" << std::endl;

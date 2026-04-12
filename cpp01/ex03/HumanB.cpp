@@ -2,22 +2,22 @@
 #include <iostream>
 
 HumanB::HumanB(const std::string &name)
-	: name(name), weapon(NULL)
+	: _name(name), _weapon(NULL)
 {
 }
 
 void HumanB::setWeapon(Weapon &weapon)
 {
-	this->weapon = &weapon;
+	this->_weapon = &weapon;
 }
 
 void HumanB::attack(void) const
 {
-	if (!this->weapon)
+	if (!this->_weapon)
 	{
-		std::cout << this->name << " has no weapon" << std::endl;
+		std::cout << this->_name << " has no weapon" << std::endl;
 		return ;
 	}
-	std::cout << this->name << " attacks with their "
-		<< this->weapon->getType() << std::endl;
+	std::cout << this->_name << " attacks with their "
+		<< this->_weapon->getType() << std::endl;
 }

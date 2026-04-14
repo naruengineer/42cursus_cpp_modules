@@ -54,24 +54,24 @@ check "改行前後の hel -> HEL" "$(printf 'HEL\nlo')" "$(cat test3.txt.replac
 show_diff test3.txt
 
 echo ""
-echo "=== Test 4: s2 が空文字列（削除） ==="
+echo "=== Test 4: 改行を跨ぐs1の置換 ==="
+printf "hel\nlo world" > test6.txt
+./sed test6.txt "$(printf 'hel\nlo')" "HELLO"
+check "hel\\nlo -> HELLO" "HELLO world" "$(cat test6.txt.replace)"
+show_diff test6.txt
+
+echo ""
+echo "=== Test 5: s2 が空文字列（削除） ==="
 ./sed test4.txt abc ""
 check "abc -> 空文字（削除）" "" "$(cat test4.txt.replace)"
 show_diff test4.txt
 
 echo ""
-echo "=== Test 5: s1 が見つからない場合 ==="
+echo "=== Test 6: s1 が見つからない場合 ==="
 echo "hello world hello" > test5.txt
 ./sed test5.txt NOTFOUND replaced
 check "s1 なし → そのまま" "hello world hello" "$(cat test5.txt.replace)"
 show_diff test5.txt
-
-echo ""
-echo "=== Test 6: 改行を跨ぐs1の置換 ==="
-printf "hel\nlo world" > test6.txt
-./sed test6.txt "$(printf 'hel\nlo')" "HELLO"
-check "hel\\nlo -> HELLO" "HELLO world" "$(cat test6.txt.replace)"
-show_diff test6.txt
 
 echo ""
 echo "=== Test 7: s2に改行を含む置換 ==="
@@ -117,9 +117,17 @@ output=$(./sed nonexist.txt a b 2>&1)
 check "存在しないファイル → エラー" "Error: could not open file: nonexist.txt" "$output"
 
 echo ""
+echo "=== Test 14: エラー - 読み取り不可のファイル ==="
+echo "hello" > test14.txt
+chmod 000 test14.txt
+output=$(./sed test14.txt hello world 2>&1)
+check "chmod 000 → エラー" "Error: could not open file: test14.txt" "$output"
+chmod 644 test14.txt
+
+echo ""
 echo "=== 結果: PASS=$PASS / FAIL=$FAIL ==="
 
 # 一時ファイルを削除
 rm -f test.txt test.txt.replace
-rm -f test{1,2,3,4,5,6,7,8,9,10}.txt
-rm -f test{1,2,3,4,5,6,7,8,9,10}.txt.replace
+rm -f test{1,2,3,4,5,6,7,8,9,10}.txt test14.txt
+rm -f test{1,2,3,4,5,6,7,8,9,10}.txt.replace test14.txt.replace

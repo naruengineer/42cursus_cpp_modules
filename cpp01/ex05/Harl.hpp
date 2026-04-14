@@ -12,7 +12,7 @@ class Harl
 		void	error(void);
 
 	public:
-		void	complain(const std::string &level);
+		void	complain(std::string level);
 };
 
 #endif

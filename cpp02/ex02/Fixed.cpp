@@ -58,7 +58,7 @@ bool Fixed::operator>(const Fixed &other) const
 bool Fixed::operator<(const Fixed &other) const
 {
 	return (this->_rawBits < other._rawBits);
-}まあ
+}
 
 bool Fixed::operator>=(const Fixed &other) const
 {
